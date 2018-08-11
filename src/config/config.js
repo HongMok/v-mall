@@ -3,7 +3,7 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-export const host = 'https://hzhpfdkv.qcloud.la/';
+export const host = 'https://tzp7nlys.qcloud.la/';//tzp7nlys.qcloud.la
 
 export const config = {
 

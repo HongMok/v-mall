@@ -5,8 +5,11 @@ import {host, config} from '@/config/config';
 import Util from '@/utils/util'
 const qcloud = {};// require('../../vendor/wafer2-client-sdk/index.js')
 
+import ProductItem from '@/components/product-item'
+
 export default {
     components: {
+      'product-item': ProductItem
     },
 
     /**
@@ -43,7 +46,68 @@ export default {
         name: '商品5',
         price: 500,
         source: '国内·广东',
-      }], // 商品列表
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },{
+        id: 5,
+        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
+        name: '商品5',
+        price: 500,
+        source: '国内·广东',
+      },
+    ], // 商品列表
     },
 
     methods:{

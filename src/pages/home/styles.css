@@ -63,13 +63,16 @@
     font-weight: bold;
   }
   
-  .product-row {
+  .product-list {
     display: flex;
-    justify-content: space-around; 
+    /* justify-content: space-around;  */
+    margin: 0 52rpx 0rpx;
+    flex-wrap: wrap;
+    justify-content: space-around;
     margin: 0 52rpx 28rpx;
   }
   
-  .product-card {
+  /* .product-card {
     flex: 1;
     background: #FFFFFF;
     box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
@@ -122,4 +125,17 @@
     flex: 1;
     margin: 0 10rpx;
     font-size: 28rpx;
+  } */
+
+  .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 144rpx;
+    z-index: -1;
+  }
+
+  #page {
+    background-color: #f9f9f9;
   }
