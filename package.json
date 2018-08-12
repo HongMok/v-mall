@@ -10,7 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "mpvue": "^1.0.11"
+    "mpvue": "^1.0.11",
+    "qcloud-weapp-client-sdk": "^0.7.4"
   },
   "devDependencies": {
     "mpvue-loader": "^1.1.2",

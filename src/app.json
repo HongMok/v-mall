@@ -4,6 +4,7 @@
     "pages/order/main",
     "pages/trolley/main",
     "pages/user/main"
+    ,"pages/detail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,13 +1,20 @@
 <script>
+
+import {host, config} from '@/config/config';
+import qcloud from 'qcloud-weapp-client-sdk'
+
 export default {
   created () {
-    // 调用API从本地缓存中获取数据
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+  },
+  onLaunch: function () {
+    qcloud.setLoginUrl(config.service.loginUrl)
+  },
 
-    console.log('app created and cache logs by setStorageSync')
-  }
+  data(){
+    return {
+    };
+  },
+
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <navigator class='product-card' :key='product.id' :url="'/pages/detail/detail?id='+product.id">
+      <navigator class='product-card' :key='product.id' :url="'/pages/detail/main?id='+product.id">
         <img class='product-image' :src='product.image' mode='widthFix'>
         <div class='product-name'>{{product.name}}</div>
         <div class='product-meta'>
