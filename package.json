@@ -10,8 +10,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "es6-promise": "^4.2.4",
     "mpvue": "^1.0.11",
-    "qcloud-weapp-client-sdk": "^0.7.4"
+    "qcloud-weapp-client-sdk": "^0.7.4",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "mpvue-loader": "^1.1.2",

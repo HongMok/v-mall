@@ -1,6 +1,9 @@
 
 
-import app from '@/utils/global'
+// import app from '@/components/login-helper'
+import Vue from 'vue'
+
+const app = Vue.LoginHelper;
 
 export default {
     components: {
@@ -10,7 +13,7 @@ export default {
       return {
         msg: '商城首页',
         userInfo: null,
-        locationAuthType: app.locationAuthType
+        locationAuthType: this.$LoginHelper.locationAuthType
       }
     },
 

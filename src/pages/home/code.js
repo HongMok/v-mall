@@ -123,6 +123,8 @@ export default {
      */
     onLoad: function (options) {
       this.getProductList();
+
+      console.log( this.$LoginHelper.locationAuthType );
       // console.log(host, config);
       // Util.showSuccess('suc');
     },
