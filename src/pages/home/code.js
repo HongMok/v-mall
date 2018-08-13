@@ -4,6 +4,7 @@ import {host, config} from '@/config/config';
 import Util from '@/utils/util'
 import qcloud from 'qcloud-weapp-client-sdk'
 import ProductItem from '@/components/product-item'
+import LoginHelper from '../../utils/LoginHelper'
 
 export default {
     components: {
@@ -124,7 +125,10 @@ export default {
     onLoad: function (options) {
       this.getProductList();
 
-      console.log( this.$LoginHelper.locationAuthType );
+      console.log('hihihihi');
+
+      console.log( LoginHelper.locationAuthType );
+      LoginHelper.locationAuthType = 9;
       // console.log(host, config);
       // Util.showSuccess('suc');
     },

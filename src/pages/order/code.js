@@ -1,3 +1,5 @@
+import LoginHelper from '../../utils/LoginHelper'
+
 export default {
     components: {
     },
@@ -9,6 +11,11 @@ export default {
     },
   
     created () {
-        console.log('hi');
+        
+    },
+
+    onLoad(){
+        console.log('order');
+        console.log( LoginHelper.locationAuthType );
     }
   }
