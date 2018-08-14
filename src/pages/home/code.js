@@ -2,9 +2,8 @@
 
 import {host, config} from '@/config/config';
 import Util from '@/utils/util'
-import qcloud from 'qcloud-weapp-client-sdk'
+const qcloud = require( '../../libs/wafer-client-sdk/index' )
 import ProductItem from '@/components/product-item'
-import LoginHelper from '../../utils/LoginHelper'
 
 export default {
     components: {
@@ -123,14 +122,9 @@ export default {
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      this.getProductList();
+      // this.getProductList();
 
       console.log('hihihihi');
-
-      console.log( LoginHelper.locationAuthType );
-      LoginHelper.locationAuthType = 9;
-      // console.log(host, config);
-      // Util.showSuccess('suc');
     },
 
     /**

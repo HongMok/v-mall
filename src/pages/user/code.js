@@ -1,9 +1,5 @@
 
-
-// import app from '@/components/login-helper'
-import Vue from 'vue'
-
-const app = Vue.LoginHelper;
+import LoginHelper from '../../utils/LoginHelper'
 
 export default {
     components: {
@@ -13,7 +9,7 @@ export default {
       return {
         msg: '商城首页',
         userInfo: null,
-        locationAuthType: this.$LoginHelper.locationAuthType
+        locationAuthType: LoginHelper.locationAuthType
       }
     },
 
@@ -31,33 +27,50 @@ export default {
           title: '此功能暂未开放'
         })
       },
-
-      onTapLogin: function () {
-        app.login({
+      onTapLogin(e) {
+        console.log('on click login :' + e );
+        LoginHelper.doQcloudLogin({
           success: ({ userInfo }) => {
             console.log('suc');
             console.log(userInfo);
             this.userInfo = userInfo;
-            this.locationAuthType = app.locationAuthType;
-            // this.setData({
-            //   userInfo,
-            //   locationAuthType: app.locationAuthType
-            // })
+            this.locationAuthType = LoginHelper.locationAuthType;
           },
           error: () => {
             console.log('fail');
-            this.locationAuthType = app.locationAuthType;
-            // this.setData({
-            //   locationAuthType: app.locationAuthType
-            // })
+            this.locationAuthType = LoginHelper.locationAuthType;
           }
         })
       },
+
+    },
+
+    onTapLogin(e) {
+      console.log('on click login :' + e );
+      LoginHelper.login({
+        success: ({ userInfo }) => {
+          console.log('suc');
+          console.log(userInfo);
+          this.userInfo = userInfo;
+          this.locationAuthType = LoginHelper.locationAuthType;
+          // this.setData({
+          //   userInfo,
+          //   locationAuthType: app.locationAuthType
+          // })
+        },
+        error: () => {
+          console.log('fail');
+          this.locationAuthType = LoginHelper.locationAuthType;
+          // this.setData({
+          //   locationAuthType: app.locationAuthType
+          // })
+        }
+      })
     },
   
     created () {
-        console.log('hi');
-        console.log(app);
+        // console.log('hi');
+        // console.log(app);
         // this.onTapLogin();
     }
   }

@@ -1,6 +1,6 @@
 import {host, config} from '@/config/config';
 import Util from '@/utils/util'
-import qcloud from 'qcloud-weapp-client-sdk'
+const qcloud = require( '../../libs/wafer-client-sdk/index.js' );
 
 
 export default {

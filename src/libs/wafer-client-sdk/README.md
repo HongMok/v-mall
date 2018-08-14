@@ -14,13 +14,13 @@
 
 ```sh
 npm install -g bower
-bower install qcloud-weapp-client-sdk
+bower install wafer-client-sdk
 ```
 
 安装之后，就可以使用 `require` 引用 SDK 模块：
 
 ```js
-var qcloud = require('./bower_components/qcloud-weapp-client-sdk/index.js');
+var qcloud = require('./bower_components/wafer-client-sdk/index.js');
 ```
 
 ## 会话服务
@@ -147,7 +147,7 @@ qcloud.login(options);
 |-------------|---------------|--------------
 |options      |PlainObject    |会话服务登录地址
 |options.success | () => void | 登录成功的回调
-|options.error | (error) => void | 登录失败的回调
+|options.fail    | (error) => void | 登录失败的回调
 
 
 ### request
@@ -164,10 +164,11 @@ qcloud.request(options);
 |options      |PlainObject    | 会话服务登录地址
 |options.login | bool         | 是否自动登录以获取会话，默认为 false
 |options.url   | string       | 必填，要请求的地址
+|options.data  | string、object | 可选，提交到服务器的数据，会透传到 wx.request 方法中
 |options.header | PlainObject | 请求头设置，不允许设置 Referer
 |options.method | string      | 请求的方法，默认为 GET
 |options.success | (response) => void | 登录成功的回调。<ul><li>`response.statusCode`：请求返回的状态码</li><li>`response.data`：请求返回的数据</li></ul>
-|options.error | (error) => void | 登录失败的回调
+|options.fail | (error) => void | 登录失败的回调
 |options.complete | () => void | 登录完成后回调，无论成功还是失败
 
 ### Tunnel

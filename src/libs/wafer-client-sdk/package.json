@@ -1,0 +1,70 @@
+{
+  "_from": "wafer-client-sdk",
+  "_id": "wafer-client-sdk@0.8.4",
+  "_inBundle": false,
+  "_integrity": "sha1-WYkl2bAC0I5fYzsf7FXfdWq5VYI=",
+  "_location": "/wafer-client-sdk",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "wafer-client-sdk",
+    "name": "wafer-client-sdk",
+    "escapedName": "wafer-client-sdk",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "http://registry.npm.taobao.org/wafer-client-sdk/download/wafer-client-sdk-0.8.4.tgz",
+  "_shasum": "598925d9b002d08e5f633b1fec55df756ab95582",
+  "_spec": "wafer-client-sdk",
+  "_where": "E:\\git\\v-mall",
+  "author": {
+    "name": "Tencent Cloud"
+  },
+  "bugs": {
+    "url": "https://github.com/tencentyun/weapp-client-sdk/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "QCloud 微信小程序客户端 SDK",
+  "devDependencies": {
+    "coveralls": "^2.11.14",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.0",
+    "should": "^11.1.0",
+    "should-sinon": "0.0.5",
+    "sinon": "^1.17.6"
+  },
+  "homepage": "https://github.com/tencentyun/weapp-client-sdk#readme",
+  "keywords": [
+    "qcloud",
+    "weapp",
+    "wechat",
+    "sdk",
+    "client",
+    "auth",
+    "websocket"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "wafer-client-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tencentyun/weapp-client-sdk.git"
+  },
+  "scripts": {
+    "coveralls": "npm run travis-test-cov && cat ./coverage/lcov.info | coveralls",
+    "samver-minor": "npm version minor && git push origin master --tags",
+    "samver-patch": "npm version patch && git push origin master --tags",
+    "test": "mocha",
+    "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- --reporter spec --check-leaks --bail --slow 200 test/",
+    "travis-test-cov": "istanbul cover --report lcovonly ./node_modules/mocha/bin/_mocha -- --reporter spec --check-leaks --bail --slow 200 test/"
+  },
+  "version": "0.8.4"
+}

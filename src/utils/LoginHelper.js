@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import AuthorizeConfig from '@/config/authorize-config.js';
+import qcloud from '../libs/wafer-client-sdk/index.js'
 
 var helper = new Vue( {
     data(){
@@ -15,7 +16,7 @@ var helper = new Vue( {
             success: res => {
                 if (res.authSetting['scope.userInfo'] === false) {
 
-                this.locationAuthType = UNAUTHORIZED
+                this.locationAuthType = AuthorizeConfig.UNAUTHORIZED
                 // 已拒绝授权
                 wx.showModal({
                     title: '提示',
@@ -24,8 +25,8 @@ var helper = new Vue( {
                 })
                 error && error()
                 } else {
-                this.locationAuthType = AUTHORIZED
-                doQcloudLogin({ success, error })
+                this.locationAuthType = AuthorizeConfig.AUTHORIZED
+                this.doQcloudLogin({ success, error })
                 }
             }
             })
@@ -42,7 +43,7 @@ var helper = new Vue( {
                 })
                 } else {
                 // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-                getUserInfo({ success, error })
+                this.getUserInfo({ success, error })
                 }
             },
             fail: () => {
