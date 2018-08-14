@@ -25,22 +25,25 @@ var LoginError = (function () {
 var getWxLoginResult = function getLoginCode(callback) {
     wx.login({
         success: function (loginResult) {
-            wx.getUserInfo({
-                success: function (userResult) {
-                    callback(null, {
-                        code: loginResult.code,
-                        encryptedData: userResult.encryptedData,
-                        iv: userResult.iv,
-                        userInfo: userResult.userInfo,
-                    });
-                },
+            callback(null, {
+                code: loginResult.code
+            })
+            // wx.getUserInfo({
+            //     success: function (userResult) {
+            //         callback(null, {
+            //             code: loginResult.code,
+            //             encryptedData: userResult.encryptedData,
+            //             iv: userResult.iv,
+            //             userInfo: userResult.userInfo,
+            //         });
+            //     },
 
-                fail: function (userError) {
-                    var error = new LoginError(constants.ERR_WX_GET_USER_INFO, '获取微信用户信息失败，请检查网络状态');
-                    error.detail = userError;
-                    callback(error, null);
-                },
-            });
+            //     fail: function (userError) {
+            //         var error = new LoginError(constants.ERR_WX_GET_USER_INFO, '获取微信用户信息失败，请检查网络状态');
+            //         error.detail = userError;
+            //         callback(error, null);
+            //     },
+            // });
         },
 
         fail: function (loginError) {
@@ -84,11 +87,14 @@ var login = function login(options) {
         }
         
         var userInfo = wxLoginResult.userInfo;
+        const userResult = options.userResult;
 
         // 构造请求头，包含 code、encryptedData 和 iv
         var code = wxLoginResult.code;
-        var encryptedData = wxLoginResult.encryptedData;
-        var iv = wxLoginResult.iv;
+        // var encryptedData = wxLoginResult.encryptedData;
+        // var iv = wxLoginResult.iv;
+        var encryptedData = userResult.encryptedData;
+        var iv = userResult.iv;
         var header = {};
 
         header[constants.WX_HEADER_CODE] = code;

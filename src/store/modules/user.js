@@ -1,16 +1,13 @@
 import {host, config} from '@/config/config';
 import qcloud from 'qcloud-weapp-client-sdk'
+import AuthorizeConfig from '@/config/authorize-config';
 
-
-const UNPROMPTED = 0
-const UNAUTHORIZED = 1
-const AUTHORIZED = 2
 
 // initial state
 // shape: [{ id, quantity }]
 const state = {
     userInfo: null,
-    locationAuthType: UNPROMPTED
+    locationAuthType: AuthorizeConfig.UNPROMPTED
 }
 
 // getters

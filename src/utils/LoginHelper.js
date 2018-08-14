@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import AuthorizeConfig from '@/config/authorize-config.js';
-import qcloud from '../libs/wafer-client-sdk/index.js'
+// import qcloud from '../libs/wafer-client-sdk/index.js'
+const qcloud = require( '../libs/wafer-client-sdk/index' )
 
 var helper = new Vue( {
     data(){
@@ -11,7 +12,7 @@ var helper = new Vue( {
     },
 
     methods:{
-        login({ success, error }) {
+        login({ success, error, userResult }) {
             wx.getSetting({
             success: res => {
                 if (res.authSetting['scope.userInfo'] === false) {
@@ -26,13 +27,13 @@ var helper = new Vue( {
                 error && error()
                 } else {
                 this.locationAuthType = AuthorizeConfig.AUTHORIZED
-                this.doQcloudLogin({ success, error })
+                this.doQcloudLogin({ success, error, userResult })
                 }
             }
             })
         },
 
-        doQcloudLogin({ success, error }) {
+        doQcloudLogin({ success, error, userResult }) {
             // 调用 qcloud 登陆接口
             qcloud.login({
             success: result => {
@@ -48,7 +49,8 @@ var helper = new Vue( {
             },
             fail: () => {
                 error && error()
-            }
+            },
+            userResult: userResult
             })
         },
 

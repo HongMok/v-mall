@@ -1,5 +1,7 @@
 
 import LoginHelper from '../../utils/LoginHelper'
+const qcloud = require( '../../libs/wafer-client-sdk/index' )
+import AuthorizeConfig from '../../config/authorize-config'
 
 export default {
     components: {
@@ -29,17 +31,20 @@ export default {
       },
       onTapLogin(e) {
         console.log('on click login :' + e );
-        LoginHelper.doQcloudLogin({
-          success: ({ userInfo }) => {
+        qcloud.login({
+          success:(res)=>{
             console.log('suc');
-            console.log(userInfo);
-            this.userInfo = userInfo;
-            this.locationAuthType = LoginHelper.locationAuthType;
+            console.log(res);
+            // this.userInfo = userInfo;
+            this.locationAuthType = 1;//AuthorizeConfig.AUTHORIZED;
           },
-          error: () => {
+          fail:(err)=> {
             console.log('fail');
-            this.locationAuthType = LoginHelper.locationAuthType;
-          }
+            console.log(err);
+            this.locationAuthType = 1;//AuthorizeConfig.UNAUTHORIZED;
+            // this.locationAuthType = LoginHelper.locationAuthType;
+          },
+          userResult: e.target
         })
       },
 
@@ -47,24 +52,19 @@ export default {
 
     onTapLogin(e) {
       console.log('on click login :' + e );
-      LoginHelper.login({
-        success: ({ userInfo }) => {
+      qcloud.login({
+        success: res => {
           console.log('suc');
-          console.log(userInfo);
-          this.userInfo = userInfo;
-          this.locationAuthType = LoginHelper.locationAuthType;
-          // this.setData({
-          //   userInfo,
-          //   locationAuthType: app.locationAuthType
-          // })
+          console.log(res);
+          // this.userInfo = userInfo;
+          // this.locationAuthType = LoginHelper.locationAuthType;
         },
-        error: () => {
+        error: err => {
           console.log('fail');
-          this.locationAuthType = LoginHelper.locationAuthType;
-          // this.setData({
-          //   locationAuthType: app.locationAuthType
-          // })
-        }
+          console.log(err);
+          // this.locationAuthType = LoginHelper.locationAuthType;
+        },
+        userResult: e
       })
     },
   

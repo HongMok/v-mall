@@ -1,6 +1,7 @@
 import {host, config} from '@/config/config';
 import Util from '@/utils/util'
-const qcloud = require( '../../libs/wafer-client-sdk/index.js' );
+// const qcloud = require( '../../libs/wafer-client-sdk/index.js' );
+const qcloud = require( '../../libs/wafer-client-sdk/index' )
 
 
 export default {
