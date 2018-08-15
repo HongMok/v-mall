@@ -31,7 +31,7 @@ export default {
             wx.hideLoading()
   
             if (!result.data.code) {
-                this.productList= result.data.data;
+                this.product= result.data.data;
             } else {
               wx.showToast({
                 title: '商品详情加载失败',

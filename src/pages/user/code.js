@@ -36,12 +36,12 @@ export default {
             console.log('suc');
             console.log(res);
             // this.userInfo = userInfo;
-            this.locationAuthType = 1;//AuthorizeConfig.AUTHORIZED;
+            this.locationAuthType = AuthorizeConfig.AUTHORIZED;
           },
           fail:(err)=> {
             console.log('fail');
             console.log(err);
-            this.locationAuthType = 1;//AuthorizeConfig.UNAUTHORIZED;
+            this.locationAuthType = AuthorizeConfig.UNAUTHORIZED;
             // this.locationAuthType = LoginHelper.locationAuthType;
           },
           userResult: e.target

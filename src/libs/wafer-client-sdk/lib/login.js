@@ -27,14 +27,17 @@ var getWxLoginResult = function getLoginCode(callback) {
         success: function (loginResult) {
             callback(null, {
                 code: loginResult.code
+                // encryptedData: loginResult.encryptedData,
+                // iv: loginResult.iv,
+                // userInfo: loginResult.userInfo,
             })
             // wx.getUserInfo({
             //     success: function (userResult) {
             //         callback(null, {
             //             code: loginResult.code,
-            //             encryptedData: userResult.encryptedData,
-            //             iv: userResult.iv,
-            //             userInfo: userResult.userInfo,
+                        // encryptedData: userResult.encryptedData,
+                        // iv: userResult.iv,
+                        // userInfo: userResult.userInfo,
             //         });
             //     },
 
@@ -85,7 +88,7 @@ var login = function login(options) {
             options.fail(wxLoginError);
             return;
         }
-        
+
         var userInfo = wxLoginResult.userInfo;
         const userResult = options.userResult;
 
