@@ -35,7 +35,8 @@ export default {
           title: '此功能暂未开放'
         })
       },
-      onTapLogin(e) {
+
+      onGetUserInfo(e) {
         qcloud.login({
           success:(res)=>{
             let info = res;
@@ -48,6 +49,27 @@ export default {
           },
           userResult: e.target
         })
+      },
+
+      onOpenSetting(e){
+        console.log(e);
+        let type;
+        if(e.target.errMsg.indexOf('ok')==-1){
+          //授权失败
+          type = AuthorizeConfig.UNAUTHORIZED;
+        }
+        else{
+          type = AuthorizeConfig.UNPROMPTED;
+        }
+        this.$store.commit('user/setAuthType', {type});
+        // success: (res) => {
+          /*
+           * res.authSetting = {
+           *   "scope.userInfo": true,
+           *   "scope.userLocation": true
+           * }
+           */
+        // }
       },
 
     },

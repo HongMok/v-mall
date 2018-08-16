@@ -11,8 +11,8 @@
           <div class="unlogin-tips">点击微信登录后可方便购物</div>
         </div>
       </div>
-      <button v-if="authType==0" class="unlogin-btn" open-type='getUserInfo' @getuserinfo='onTapLogin'>微信登录</button>
-      <button v-if="authType==1" class="unlogin-btn" open-type='openSetting' @opensetting="onTapLogin">授权登录</button>
+      <button v-if="authType==0" class="unlogin-btn" open-type='getUserInfo' @getuserinfo='onGetUserInfo'>微信登录</button>
+      <button v-if="authType==1" class="unlogin-btn" open-type='openSetting' @opensetting='onOpenSetting'>授权登录</button>
     </div>
     <div class="user-card" v-else>
       <div class="user-info">
