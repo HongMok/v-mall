@@ -31,7 +31,7 @@ export default {
   background: #FFFFFF;
   box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
   border-radius: 13rpx;
-  margin: 10rpx;
+  margin: 11rpx;
 }
 
 /* .product-card:first-child {

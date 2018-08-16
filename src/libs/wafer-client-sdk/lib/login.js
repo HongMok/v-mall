@@ -27,17 +27,14 @@ var getWxLoginResult = function getLoginCode(callback) {
         success: function (loginResult) {
             callback(null, {
                 code: loginResult.code
-                // encryptedData: loginResult.encryptedData,
-                // iv: loginResult.iv,
-                // userInfo: loginResult.userInfo,
-            })
+            });
             // wx.getUserInfo({
             //     success: function (userResult) {
             //         callback(null, {
             //             code: loginResult.code,
-                        // encryptedData: userResult.encryptedData,
-                        // iv: userResult.iv,
-                        // userInfo: userResult.userInfo,
+            //             encryptedData: userResult.encryptedData,
+            //             iv: userResult.iv,
+            //             userInfo: userResult.userInfo,
             //         });
             //     },
 
@@ -88,16 +85,18 @@ var login = function login(options) {
             options.fail(wxLoginError);
             return;
         }
+        
+        // const userResult = options.userResult;
+        // var userInfo = wxLoginResult.userInfo;
+        var userInfo = options.userResult;
 
-        var userInfo = wxLoginResult.userInfo;
-        const userResult = options.userResult;
+        var encryptedData = userInfo.encryptedData;
+        var iv = userInfo.iv;
 
         // 构造请求头，包含 code、encryptedData 和 iv
         var code = wxLoginResult.code;
         // var encryptedData = wxLoginResult.encryptedData;
         // var iv = wxLoginResult.iv;
-        var encryptedData = userResult.encryptedData;
-        var iv = userResult.iv;
         var header = {};
 
         header[constants.WX_HEADER_CODE] = code;
@@ -110,16 +109,16 @@ var login = function login(options) {
             header: header,
             method: options.method,
             data: options.data,
-
             success: function (result) {
                 var data = result.data;
 
                 // 成功地响应会话信息
-                if (data && data[constants.WX_SESSION_MAGIC_ID]) {
-                    if (data.session) {
-                        data.session.userInfo = userInfo;
-                        Session.set(data.session);
-                        options.success(userInfo);
+                if (data && data.code === 0 && data.data.skey) {
+                    var res = data.data
+                    if (res.userinfo) {
+                        // Session.set(res.skey);
+                        Session.set(res);
+                        options.success(res.userinfo);
                     } else {
                         var errorMessage = '登录失败(' + data.error + ')：' + (data.message || '未知错误');
                         var noSessionError = new LoginError(constants.ERR_LOGIN_SESSION_NOT_RECEIVED, errorMessage);
@@ -128,8 +127,7 @@ var login = function login(options) {
 
                 // 没有正确响应会话信息
                 } else {
-                    var errorMessage = '登录请求没有包含会话响应，请确保服务器处理 `' + options.loginUrl + '` 的时候正确使用了 SDK 输出登录结果';
-                    var noSessionError = new LoginError(constants.ERR_LOGIN_SESSION_NOT_RECEIVED, errorMessage);
+                    var noSessionError = new LoginError(constants.ERR_LOGIN_SESSION_NOT_RECEIVED, JSON.stringify(data));
                     options.fail(noSessionError);
                 }
             },
@@ -146,7 +144,7 @@ var login = function login(options) {
     if (session) {
         wx.checkSession({
             success: function () {
-                options.success(session.userInfo);
+                options.success(session.userinfo);
             },
 
             fail: function () {

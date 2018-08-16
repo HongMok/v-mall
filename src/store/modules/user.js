@@ -1,5 +1,5 @@
-import {host, config} from '@/config/config';
-import qcloud from 'qcloud-weapp-client-sdk'
+// import {host, config} from '@/config/config';
+// import qcloud from 'qcloud-weapp-client-sdk'
 import AuthorizeConfig from '@/config/authorize-config';
 
 
@@ -7,83 +7,94 @@ import AuthorizeConfig from '@/config/authorize-config';
 // shape: [{ id, quantity }]
 const state = {
     userInfo: null,
-    locationAuthType: AuthorizeConfig.UNPROMPTED
+    authType: AuthorizeConfig.UNPROMPTED
 }
 
 // getters
 const getters = {
-  cartProducts: (state, getters, rootState) => {
-    return state.items.map(({ id, quantity }) => {
-      const product = rootState.products.all.find(product => product.id === id)
-      return {
-        title: product.title,
-        price: product.price,
-        quantity
-      }
-    })
-  },
+  // cartProducts: (state, getters, rootState) => {
+  //   return state.items.map(({ id, quantity }) => {
+  //     const product = rootState.products.all.find(product => product.id === id)
+  //     return {
+  //       title: product.title,
+  //       price: product.price,
+  //       quantity
+  //     }
+  //   })
+  // },
 
-  cartTotalPrice: (state, getters) => {
-    return getters.cartProducts.reduce((total, product) => {
-      return total + product.price * product.quantity
-    }, 0)
-  }
+  // cartTotalPrice: (state, getters) => {
+  //   return getters.cartProducts.reduce((total, product) => {
+  //     return total + product.price * product.quantity
+  //   }, 0)
+  // }
 }
 
 // actions
 const actions = {
-  checkout ({ commit, state }, products) {
-    const savedCartItems = [...state.items]
-    commit('setCheckoutStatus', null)
-    // empty cart
-    commit('setCartItems', { items: [] })
-    shop.buyProducts(
-      products,
-      () => commit('setCheckoutStatus', 'successful'),
-      () => {
-        commit('setCheckoutStatus', 'failed')
-        // rollback to the cart saved before sending the request
-        commit('setCartItems', { items: savedCartItems })
-      }
-    )
-  },
-
-  addProductToCart ({ state, commit }, product) {
-    commit('setCheckoutStatus', null)
-    if (product.inventory > 0) {
-      const cartItem = state.items.find(item => item.id === product.id)
-      if (!cartItem) {
-        commit('pushProductToCart', { id: product.id })
-      } else {
-        commit('incrementItemQuantity', cartItem)
-      }
-      // remove 1 item from stock
-      commit('products/decrementProductInventory', { id: product.id }, { root: true })
+    actLoginInfo({commit, state}, {type, info}){
+      commit('setAuthType', {type});
+      commit('setUserInfo', {info});
     }
-  }
+  // checkout ({ commit, state }, products) {
+  //   const savedCartItems = [...state.items]
+  //   commit('setCheckoutStatus', null)
+  //   // empty cart
+  //   commit('setCartItems', { items: [] })
+  //   shop.buyProducts(
+  //     products,
+  //     () => commit('setCheckoutStatus', 'successful'),
+  //     () => {
+  //       commit('setCheckoutStatus', 'failed')
+  //       // rollback to the cart saved before sending the request
+  //       commit('setCartItems', { items: savedCartItems })
+  //     }
+  //   )
+  // },
+
+  // addProductToCart ({ state, commit }, product) {
+  //   commit('setCheckoutStatus', null)
+  //   if (product.inventory > 0) {
+  //     const cartItem = state.items.find(item => item.id === product.id)
+  //     if (!cartItem) {
+  //       commit('pushProductToCart', { id: product.id })
+  //     } else {
+  //       commit('incrementItemQuantity', cartItem)
+  //     }
+  //     // remove 1 item from stock
+  //     commit('products/decrementProductInventory', { id: product.id }, { root: true })
+  //   }
+  // }
 }
 
 // mutations
 const mutations = {
-  pushProductToCart (state, { id }) {
-    state.items.push({
-      id,
-      quantity: 1
-    })
+  setAuthType(state, {type}){
+    state.authType = type;
   },
 
-  incrementItemQuantity (state, { id }) {
-    const cartItem = state.items.find(item => item.id === id)
-    cartItem.quantity++
-  },
-
-  setCartItems (state, { items }) {
-    state.items = items
-  },
-
-  setCheckoutStatus (state, status) {
-    state.checkoutStatus = status
+  setUserInfo(state, {info}){
+    state.userInfo = info;
   }
+  // pushProductToCart (state, { id }) {
+  //   state.items.push({
+  //     id,
+  //     quantity: 1
+  //   })
+  // },
+
+  // incrementItemQuantity (state, { id }) {
+  //   const cartItem = state.items.find(item => item.id === id)
+  //   cartItem.quantity++
+  // },
+
+  // setCartItems (state, { items }) {
+  //   state.items = items
+  // },
+
+  // setCheckoutStatus (state, status) {
+  //   state.checkoutStatus = status
+  // }
 }
 
 export default {

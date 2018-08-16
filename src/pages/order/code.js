@@ -1,5 +1,3 @@
-import LoginHelper from '../../utils/LoginHelper'
-
 export default {
     components: {
     },
@@ -15,7 +13,5 @@ export default {
     },
 
     onLoad(){
-        console.log('order');
-        console.log( LoginHelper.locationAuthType );
     }
   }

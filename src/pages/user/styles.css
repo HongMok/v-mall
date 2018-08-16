@@ -58,3 +58,20 @@
     width: 11rpx;
     height: 18rpx;
   }
+
+  .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 144rpx;
+    z-index: -1;
+  }
+
+  .unlogin-card{
+    text-align: center;
+  }
+
+  #page {
+    background-color: #f9f9f9;
+  }

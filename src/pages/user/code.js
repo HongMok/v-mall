@@ -1,7 +1,8 @@
 
-import LoginHelper from '../../utils/LoginHelper'
+// import LoginHelper from '../../utils/LoginHelper'
 const qcloud = require( '../../libs/wafer-client-sdk/index' )
 import AuthorizeConfig from '../../config/authorize-config'
+import { mapState } from 'vuex'
 
 export default {
     components: {
@@ -9,10 +10,15 @@ export default {
   
     data () {
       return {
-        msg: '商城首页',
-        userInfo: null,
-        locationAuthType: LoginHelper.locationAuthType
+        msg: '商城首页'
       }
+    },
+
+    computed:{
+      ...mapState({
+        userInfo: state => state.user.userInfo,
+        authType: state => state.user.authType
+      }),
     },
 
     methods:{
@@ -30,47 +36,22 @@ export default {
         })
       },
       onTapLogin(e) {
-        console.log('on click login :' + e );
         qcloud.login({
           success:(res)=>{
-            console.log('suc');
-            console.log(res);
-            // this.userInfo = userInfo;
-            this.locationAuthType = AuthorizeConfig.AUTHORIZED;
+            let info = res;
+            let type = AuthorizeConfig.AUTHORIZED;
+            this.$store.dispatch('user/actLoginInfo', {info, type});
           },
           fail:(err)=> {
-            console.log('fail');
-            console.log(err);
-            this.locationAuthType = AuthorizeConfig.UNAUTHORIZED;
-            // this.locationAuthType = LoginHelper.locationAuthType;
+            let type = AuthorizeConfig.UNAUTHORIZED;
+            this.$store.commit('user/setAuthType', {type});
           },
           userResult: e.target
         })
       },
 
     },
-
-    onTapLogin(e) {
-      console.log('on click login :' + e );
-      qcloud.login({
-        success: res => {
-          console.log('suc');
-          console.log(res);
-          // this.userInfo = userInfo;
-          // this.locationAuthType = LoginHelper.locationAuthType;
-        },
-        error: err => {
-          console.log('fail');
-          console.log(err);
-          // this.locationAuthType = LoginHelper.locationAuthType;
-        },
-        userResult: e
-      })
-    },
   
     created () {
-        // console.log('hi');
-        // console.log(app);
-        // this.onTapLogin();
     }
   }
