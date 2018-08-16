@@ -32,8 +32,8 @@
       </div>
     </div>
     <div class='opr-cnt'>
-      <div class='opr-trolley' bindtap='addToTrolley'>加入购物车</div>
-      <div class='opr-buy' bindtap='buy'>立即购买</div>
+      <div class='opr-trolley' @click='addToTrolley'>加入购物车</div>
+      <div class='opr-buy' @click='buy'>立即购买</div>
     </div>
 
   </div>

@@ -88,7 +88,7 @@ var login = function login(options) {
         
         // const userResult = options.userResult;
         // var userInfo = wxLoginResult.userInfo;
-        var userInfo = options.userResult;
+        var userInfo = options.userInfo;
 
         var encryptedData = userInfo.encryptedData;
         var iv = userInfo.iv;

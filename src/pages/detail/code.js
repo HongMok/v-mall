@@ -2,6 +2,7 @@ import {host, config} from '@/config/config';
 import Util from '@/utils/util'
 // const qcloud = require( '../../libs/wafer-client-sdk/index.js' );
 const qcloud = require( '../../libs/wafer-client-sdk/index' )
+import { mapState } from 'vuex'
 
 
 export default {
@@ -18,6 +19,12 @@ export default {
             source: '国内·广东'
           },
       }
+    },
+
+    computed:{
+      ...mapState({
+        userInfo: state => state.user.userInfo
+      }),
     },
 
     methods:{
@@ -44,6 +51,22 @@ export default {
               title: '商品数据加载失败',
             })
           }
+        });
+      },
+
+      buy(){
+        let product = Object.assign({
+          count: 1
+        }, this.product)
+        
+        qcloud.request({
+              url: config.service.addOrder,
+              login: true,
+              userInfo: this.userInfo,
+              method: 'POST',
+              data: {
+                list: [product]
+              }
         });
       },
     },

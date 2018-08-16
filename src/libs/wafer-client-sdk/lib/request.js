@@ -67,7 +67,7 @@ function request(options) {
 
     // 登录后再请求
     function doRequestWithLogin() {
-        loginLib.login({ success: doRequest, fail: callFail });
+        loginLib.login({ success: doRequest, fail: callFail, userInfo: options.userInfo });
     }
 
     // 实际进行请求的方法

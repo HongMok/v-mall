@@ -51,7 +51,7 @@ export default {
             this.$store.commit('user/setAuthType', {type});
             util.showModel('登录失败','请开启授权登录');
           },
-          userResult: e.target
+          userInfo: e.target
         })
       },
 
