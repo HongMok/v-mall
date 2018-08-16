@@ -72,6 +72,15 @@
     text-align: center;
   }
 
+  .unlogin-info{
+    margin: 15rpx;
+  }
+
+  .unlogin-btn{
+    margin: 25rpx;
+  }
+
+
   #page {
     background-color: #f9f9f9;
   }

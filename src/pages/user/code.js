@@ -2,6 +2,7 @@
 // import LoginHelper from '../../utils/LoginHelper'
 const qcloud = require( '../../libs/wafer-client-sdk/index' )
 import AuthorizeConfig from '../../config/authorize-config'
+import util from '@/utils/util'
 import { mapState } from 'vuex'
 
 export default {
@@ -37,15 +38,18 @@ export default {
       },
 
       onGetUserInfo(e) {
+        util.showBusy('正在登录...');
         qcloud.login({
           success:(res)=>{
             let info = res;
             let type = AuthorizeConfig.AUTHORIZED;
             this.$store.dispatch('user/actLoginInfo', {info, type});
+            util.showSuccess('登录成功');
           },
           fail:(err)=> {
             let type = AuthorizeConfig.UNAUTHORIZED;
             this.$store.commit('user/setAuthType', {type});
+            util.showModel('登录失败','请开启授权登录');
           },
           userResult: e.target
         })
